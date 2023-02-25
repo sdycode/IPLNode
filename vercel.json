@@ -9,6 +9,11 @@
         "src": "/",
         "dest": "/index.js",
         "methods":["GET"]
+      },
+      {
+        "src": "/pom",
+        "dest": "/index.js",
+        "methods":["GET"]
       }
     ]
   }
