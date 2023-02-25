@@ -52,7 +52,7 @@ app.get('/city/:city', async function (req, res) {
     const data = await supabase
         .from('iplmatches')
         .select('*').eq('city', req.params.city);
-        
+
     res.send(
         data
 
@@ -65,7 +65,7 @@ app.get('/pom', async function (req, res) {
     const data = await supabase
         .from('iplmatches')
         .select('player_of_match');
-        
+
     res.send(
         data
 

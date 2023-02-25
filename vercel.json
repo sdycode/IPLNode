@@ -6,17 +6,7 @@
     }],
     "routes": [{"handle": "filesystem"},
       {
-        "src": "/",
-        "dest": "/index.js",
-        "methods":["GET"]
-      },
-      {
-        "src": "/pom",
-        "dest": "/index.js",
-        "methods":["GET"]
-      },
-      {
-        "src": "/city",
+        "src": "/(.*)",
         "dest": "/index.js",
         "methods":["GET"]
       }
