@@ -61,6 +61,18 @@ app.get('/city/:city', async function (req, res) {
 
 });
 
+app.get('/pom', async function (req, res) {
+    const data = await supabase
+        .from('iplmatches')
+        .select('player_of_match');
+        
+    res.send(
+        data
+
+    );
+
+
+});
 
 app.listen(5000, () => {
 
