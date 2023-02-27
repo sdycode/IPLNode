@@ -31,12 +31,26 @@ const supabase = createClient(
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qcmJpcnprdHZjdGRmaXdyb3RhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3Njc4Mzk0MCwiZXhwIjoxOTkyMzU5OTQwfQ.2QC-jb4RICVuZtvVFgleJmPXXJs-tBfrm979L888PaA'
 )
 
-
+/*
+all apis 
+https://ipl-node.vercel.app/
+getForYearRange/2008/2015
+pomForTeam/pune
+getwinnerbywickets/pune
+getWinnerByRuns/pune
+city=Mumbai
+cities
+year/2010
+teamaswin/pune
+teamloose/pune
+pom
+team/pune
+*/
 app.get('/', async function (req, res) {
     const data = await supabase
         .from('iplmatches')
         .select('*')
-        .limit(10);
+      ;
     res.send(
         data
     );
@@ -275,6 +289,7 @@ app.get('/pom', async function (req, res) {
 app.listen(5000, () => {
     console.log("it is just log")
 });
+
 
 
 /*
