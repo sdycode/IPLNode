@@ -181,11 +181,11 @@ app.get('/year/:date', async function (req, res) {
             type: 'websearch',
             config: 'english'
         });
-    supabase
+  
     res.send(
-        {
+        
             data
-        }
+        
     );
 
 });
