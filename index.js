@@ -247,6 +247,9 @@ app.get('/teampair/:team1/:team2', async function (req, res) {
 
     }).limit(1);
     const teamnamevar2 = exactTeamname2.data.at(0).team2;
+
+    console.log("teams are  "+teamnamevar1 +  "  "+ teamnamevar2);
+
     const d = await supabase.rpc('teampair',{"team1name":teamnamevar1, "team2name":teamnamevar2})
     res.send(
         d
