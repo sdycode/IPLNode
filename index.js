@@ -50,7 +50,7 @@ app.get('/', async function (req, res) {
     const data = await supabase
         .from('iplmatches')
         .select('*')
-      ;
+        ;
     res.send(
         data
     );
@@ -77,9 +77,9 @@ app.get('/getForYearRange/:syear/:eyear', async function (req, res) {
     // const teamnamevar = exactTeamname.data.at(0).team1;
     // {startyear:"2008-01-01",endyear:"2009-12-01"}
 
-    const startyear = req.params.syear+"-01-01";
-    const endyear = req.params.eyear+"-12-31";
-    const data = await supabase.rpc('getyearr',{"startyear":startyear,"endyear":endyear} );
+    const startyear = req.params.syear + "-01-01";
+    const endyear = req.params.eyear + "-12-31";
+    const data = await supabase.rpc('getyearr', { "startyear": startyear, "endyear": endyear });
     res.send(
         {
             data
@@ -95,7 +95,7 @@ app.get('/pomForTeam/:team', async function (req, res) {
     console.log("teamname " + exactTeamname.data.at(0).team1);
 
     const teamnamevar = exactTeamname.data.at(0).team1;
-    const data = await supabase.rpc('pomforfeam',{"teamname":teamnamevar} );
+    const data = await supabase.rpc('pomforfeam', { "teamname": teamnamevar });
     res.send(
         {
             data
@@ -114,7 +114,7 @@ app.get('/getwinnerbywickets/:team', async function (req, res) {
     console.log("teamname " + exactTeamname.data.at(0).team1);
 
     const teamnamevar = exactTeamname.data.at(0).team1;
-    const data = await supabase.rpc('getwinnerbywickets',{"teamname":teamnamevar} );
+    const data = await supabase.rpc('getwinnerbywickets', { "teamname": teamnamevar });
     res.send(
         {
             data
@@ -130,7 +130,7 @@ app.get('/getWinnerByRuns/:team', async function (req, res) {
     console.log("teamname " + exactTeamname.data.at(0).team1);
 
     const teamnamevar = exactTeamname.data.at(0).team1;
-    const data = await supabase.rpc('getwinnerbyruns',{"teamname":teamnamevar} );
+    const data = await supabase.rpc('getwinnerbyruns', { "teamname": teamnamevar });
     res.send(
         {
             data
@@ -181,11 +181,11 @@ app.get('/year/:date', async function (req, res) {
             type: 'websearch',
             config: 'english'
         });
-  
+
     res.send(
-        
-            data
-        
+
+        data
+
     );
 
 });
@@ -233,11 +233,30 @@ app.get('/teamloose/:team', async function (req, res) {
     );
 
 });
+app.get('/teampair/:team1/:team2', async function (req, res) {
+     const exactTeamname1 = await supabase.from('iplmatches').select('team1').textSearch('team1', req.params.team1, {
+        type: 'websearch',
+        config: 'english'
+
+    }).limit(1);
+    const teamnamevar1 = exactTeamname1.data.at(0).team1;
+
+         const exactTeamname2 = await supabase.from('iplmatches').select('team2').textSearch('team2', req.params.team2, {
+        type: 'websearch',
+        config: 'english'
+
+    }).limit(1);
+    const teamnamevar2 = exactTeamname2.data.at(0).team2;
+    const d = await supabase.rpc('teampair',{"team1name":teamnamevar1, "team2name":teamnamevar2})
+    res.send(
+        d
+    );
+});
 app.get('/team/:team', async function (req, res) {
 
     const d = await supabase.from('iplmatches').select('*');
     res.send(
-        { d }
+        d
     );
     // const d = req.params.team;
     // const exactTeamname = await supabase.from('iplmatches').select('team1').textSearch('team1', req.params.team, {
